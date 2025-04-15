@@ -216,7 +216,7 @@ class UnsupervisedDecisionTree(SimMatrixMixin, TransformerMixin, ClusterMixin, B
         if check_input:
             # TODO: allow X to be sparse
             check_X_params = dict(dtype=DTYPE)  # , accept_sparse="csc"
-            X = validate_data(self, X, validate_separately=(check_X_params))
+            X = validate_data(self, X, validate_separately=(check_X_params), ensure_all_finite=False)
             if issparse(X):
                 X.sort_indices()
 
@@ -1827,7 +1827,7 @@ class PatchObliqueDecisionTreeClassifier(SimMatrixMixin, DecisionTreeClassifier)
 
         if self.feature_weight is not None:
             self.feature_weight = validate_data(
-                self, self.feature_weight, ensure_2d=True, dtype=DTYPE
+                self, self.feature_weight, ensure_2d=True, dtype=DTYPE, ensure_all_finite=False
             )
             if self.feature_weight.shape != X.shape:
                 raise ValueError(
@@ -2308,7 +2308,7 @@ class PatchObliqueDecisionTreeRegressor(SimMatrixMixin, DecisionTreeRegressor):
 
         if self.feature_weight is not None:
             self.feature_weight = validate_data(
-                self, self.feature_weight, ensure_2d=True, dtype=DTYPE
+                self, self.feature_weight, ensure_2d=True, dtype=DTYPE, ensure_all_finite=False
             )
             if self.feature_weight.shape != X.shape:
                 raise ValueError(
