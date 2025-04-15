@@ -63,7 +63,7 @@ class NearestNeighborsMetaEstimator(MetaEstimatorMixin, BaseEstimator):
         self : object
             Fitted estimator.
         """
-        X, y = validate_data(self, X, y, accept_sparse="csc", ensure_all_finite=False)
+        X, y = validate_data(self, X, y, accept_sparse="csc")
 
         self.estimator_ = self.get_estimator()
         try:
