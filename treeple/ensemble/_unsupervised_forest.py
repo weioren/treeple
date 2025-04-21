@@ -95,6 +95,7 @@ class ForestCluster(SimMatrixMixin, TransformerMixin, ClusterMixin, BaseForest):
             self,
             X,
             dtype=DTYPE,  # accept_sparse="csc",
+            ensure_all_finite="allow-nan"
         )
         if sample_weight is not None:
             sample_weight = _check_sample_weight(sample_weight, X)
